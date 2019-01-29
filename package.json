@@ -1,0 +1,24 @@
+{
+  "name": "exc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "export N0DE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
+    "test-watch": "nodemon --exec \"npm test\""
+  },
+  "engines": {
+    "node": "11.2.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.15.0",
+    "mongodb": "^2.2.5",
+    "mongoose": "^4.5.9",
+    "socket.io": "^1.4.8"
+  }
+}
