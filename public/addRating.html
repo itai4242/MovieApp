@@ -2,13 +2,25 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <title>Update rating</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" >
+        <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+        crossorigin="anonymous"
+        >
     </head>
     <body>
-        <form id="insert-rating"> 
-            <input type="text" name="movie-name"/>
-            <input type="number" name="rating">
-            <button>Submit</button>
-        </form>
+        <div class="container text-center">
+            <p>please enter your grade to a movie</p>
+            <form id="insert-rating"> 
+                <input type="text" name="movie-name"/>
+                <input type="number" name="rating">
+                <button class="btn btn-primary">Submit</button>
+            </form>
+            <a href="/"><button class="btn btn-primary">Home Page</button></a>
+        </div>
+        
 
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/libs/jquery-3.1.0.min.js"></script>

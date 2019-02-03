@@ -2,7 +2,7 @@ require('./config/config');
 
 const path = require ('path');
 const http = require('http');
-const _ = require('lodash')
+// const _ = require('lodash')
 const express = require('express');
 const bodyParser = require('body-parser');
 //const {ObjectID} = require('mongodb');
@@ -34,19 +34,22 @@ io.on('connection', (socket) => {
     Movie.findOne({name:movie.movieName}).then((movieExist) =>{
       if(movieExist) {
         return callback('this movie is currently on the collection')
-      } else {
-        var newMovie = new Movie({
-          name: movie.movieName,
-          genre: movie.genre,
-          year: movie.year,
-        });
-       
-        newMovie.save().then((doc) => {
-          io.emit('updateMovieList', undefined);
-        }, (e) => {
-          io.emit('errorone', e);
-        });
       }
+      var year = parseInt(movie.year)
+      if (year<1900||year>2020){
+        return callback('wrong year. please try again between 1900-2020')
+      }
+      var newMovie = new Movie({
+        name: movie.movieName,
+        genre: movie.genre,
+        year: year,
+      });
+      
+      newMovie.save().then((doc) => {
+        io.emit('updateMovieList', undefined);
+      }, (e) => {
+        io.emit('errorone', e);
+      });
     })
      // callback();
   });
@@ -55,7 +58,13 @@ io.on('connection', (socket) => {
      Movie.findOne({name:movie.movieName}).then((movieExist) =>{
       if(movieExist) {
         body.votes = movieExist.votes+1;
+        if(body.rating===''){
+          return callback('you have to add rating')
+        }
         var rating =parseFloat(body.rating)
+        if (rating>10 || rating <0){
+          return callback('invalid rating please enter rating between 0-10')
+        }
         body.rating = (rating+movieExist.rating*movieExist.votes)/body.votes
         Movie.findOneAndUpdate({name:body.movieName},{$set: body}, {new: true}).then(movieExist => {
           io.emit('successRating',body.rating)
@@ -72,6 +81,9 @@ io.on('connection', (socket) => {
     // var arrayData = data.split(',')
     var yearStart = parseInt(movie.yearStart)
     var yearEnd = parseInt(movie.yearEnd)
+    if(yearStart<1900||yearStart>2020||yearEnd<1900||yearEnd>2020){
+      return callback('the years for search must be between 1900-2020')
+    }
     Movie.find({
       genre:movie.genre, 
       year:{ $gte: yearStart, $lte: yearEnd }

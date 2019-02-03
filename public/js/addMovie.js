@@ -33,6 +33,6 @@ socket.on('updateMovieList', function(message){
 }) 
 socket.on('errorone', function(err) {
     if(err){
-      alert(err)  
+      alert('error')  
     }
 })

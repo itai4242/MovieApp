@@ -26,7 +26,7 @@ jQuery('#insert-rating').on('submit', function (e) {
 
   socket.on('errortwo', function(err) {
       if(err){
-        alert(err)  
+        alert('error')  
       }
   })
 // socket.on('addRating', function(message){

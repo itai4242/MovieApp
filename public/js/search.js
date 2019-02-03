@@ -21,7 +21,6 @@ jQuery('#searchfor').on('submit', function (e) {
 
 socket.on('searchList', function (movies) {
     var ol = jQuery('<ol></ol>');
-  
     movies.forEach(function (movie) {
       ol.append(jQuery('<li></li>').text(`${movie.name}:, rating:${movie.rating}`));
     });
