@@ -9,3 +9,14 @@ if (env === 'development'|| env === 'test'){
     process.env[key] = envConfig[key];
   })
 }
+// mongodb://itai4242:itai3027@ds121475.mlab.com:21475/itaiexc
+
+// var env = process.env.NODE_ENV || 'development';
+
+  // process.env.PORT = 3000;
+  // process.env.MONGODB_URI = `mongodb://itai4242:itai3027@ds121475.mlab.com:21475/itaiexc`; 
+// else if (env === 'test') {
+//   process.env.PORT = 3000;
+//   process.env.MONGODB_URI = 'mongodb://<itai4242>:<itai3027>@ds121475.mlab.com:21475/itaiexc';
+// }
+// mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]

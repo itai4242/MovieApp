@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
 
 var {mongoose} = require('./db/mongoose');
-var {Movie} = require('./models/Movies');
+var {Movie} = require('./models/movies');
 
 var app = express();
 var server = http.createServer(app);
